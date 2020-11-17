@@ -1,3 +1,4 @@
+<%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -57,6 +58,7 @@ body {
 		<input type="button" onclick="location.href='signUp.jsp'" class = "btn_submit" value = "관리자 로그인"></input>
 		<!-- 로그인, 관리자 로그인은 onclick시 js function으로 데이터베이스 확인으로 처리할 것 -->
 	</form>
+	
 	
 	
 	
