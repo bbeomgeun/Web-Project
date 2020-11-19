@@ -1,9 +1,17 @@
 <%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
+	<script type="text/javascript">
+		window.history.forward();
+		function noBack() {
+			window.history.forward();
+		}
+		//뒤로가기 방지 코드
+    </script>
 <meta charset="EUC-KR">
 <title>로그인 페이지</title>
 <style>
@@ -45,23 +53,30 @@ body {
   color: white;
 }
 </style>
+<script>
+function check(){
+	if(!document.signUp.id.value){
+		alert("아이디를 입력하세요!");
+		return false;
+	}
+	if(!document.signUp.pw.value){
+		alert("비밀번호를 입력하세요!");
+		return false;
+	}
+
+</script>
 </head>
 <body>
 
 	<h1 align="center">벽돌 부수기 게임 홈페이지 로그인 화면입니다.</h1>
 
-	<form class="login-form" action="mainPage.jsp" method="post">
+	<form class="login-form" action="login_check.jsp" method="post" onsubmit="return check()">
 		<input type="text" name="ID" class="text" placeholder="아이디">
 		<input type="password" name="PW" class = "text" placeholder="비밀번호">
 		<input type="submit" value = "로그인" class = "btn_submit">
 		<input type="button" onclick="location.href='signUp.jsp'" class = "btn_submit" value = "회원가입"></input>
-		<input type="button" onclick="location.href='signUp.jsp'" class = "btn_submit" value = "관리자 로그인"></input>
+		<input type="button" onclick="location.href='adminLogin.jsp'" class = "btn_submit" value = "관리자 로그인"></input>
 		<!-- 로그인, 관리자 로그인은 onclick시 js function으로 데이터베이스 확인으로 처리할 것 -->
 	</form>
-	
-	
-	
-	
-	
 </body>
 </html>

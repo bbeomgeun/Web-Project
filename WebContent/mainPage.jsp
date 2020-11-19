@@ -46,14 +46,16 @@
 </style>
 </head>
 <body>
-<% String ID = request.getParameter("ID"); %>
-
 <div id = "board">
 	<div id="wrapper">
 	<!-- 헤더 시작 -->
 	<div id = "mainTop">벽돌 부수기 게임 홈페이지</div>
-	<h4>ID = <%=ID %></h4>
+	<h4>ID = <%=session.getAttribute("sessionID") %></h4>
 	<header>
+		<form method="post" action="logout.jsp"> session test용
+			<%=session.getAttribute("sessionNickname") %>님 환영합니다
+			<input type="submit" value="로그아웃" />
+		</form>
 		<ul>
 		<li><a href = "mainPage">게임 페이지</a></li>
 		<li><a href = "ranking.jsp">랭킹 페이지</a></li>

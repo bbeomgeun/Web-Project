@@ -29,10 +29,6 @@ function check(){
 	}
 }
 
-function checkID() {
-	
-}
-
 </script>
 
 </head>

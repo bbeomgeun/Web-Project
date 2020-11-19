@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     <%@ page import="java.sql.*" %>
@@ -6,6 +8,10 @@
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String nickname = request.getParameter("nickname");
+		String pattern = "yyyy-MM-dd";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		
+		String date = simpleDateFormat.format(new Date());
 		out.println(id + pw + nickname);
 	%>
 
@@ -25,6 +31,8 @@
 	 		if(dbID.equals(id)){
 	 			out.println("<script> alert('아이디가 중복되었습니다.'); history.back(); </script>");
 	 			checkID = false;
+			   	stmt.close();
+			    conn.close();
 	 			return;
 	 		}
 	 	}
@@ -38,16 +46,26 @@
 	 		if(dbNickName.equals(nickname)){
 	 			out.println("<script> alert('닉네임이 중복되었습니다.'); history.back(); </script>");
 	 			checkNickName = false;
+			   	stmt.close();
+			    conn.close();
 	 			return;
 	 		}
 	 	}
 	 	
 	 	if(checkID == true && checkNickName == true){
- 			out.println("<script> alert('회원가입이 완료되었습니다.'); </script>");
- 			response.sendRedirect("loginPage.jsp");
-	 	}
-	 	
-	     //String sqlStr = "SELECT * FROM book_table WHERE title LIKE ";
-	     //sqlStr += "ORDER BY title ASC";
-	     //ResultSet rset = stmt.executeQuery(sqlStr);
-	%>
+	 		String sqlStr3 = "INSERT INTO user_table(ID, PW, dob, nickname) VALUES (?,?,?,?)";
+	 		
+	 		PreparedStatement pstmt = conn.prepareStatement(sqlStr3);
+	 		pstmt.setString(1, id);
+	 		pstmt.setString(2, pw);
+	 		pstmt.setString(3, date);
+	 		pstmt.setString(4, nickname);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		}
+		%>
+		<script>
+		alert('회원가입이 완료되었습니다.');
+		location.href = "loginPage.jsp";
+		</script>
