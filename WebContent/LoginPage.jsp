@@ -10,7 +10,7 @@
 		function noBack() {
 			window.history.forward();
 		}
-		//뒤로가기 방지 코드
+		//뒤로가기 방지 코드	
     </script>
 <meta charset="EUC-KR">
 <title>로그인 페이지</title>
