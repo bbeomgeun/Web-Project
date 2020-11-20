@@ -62,6 +62,8 @@
 		<li><a href="community.jsp">한줄 평 게시판</a></li>
 		</ul>
 	</header>
+	<%@include  file="GameSource.html" %>
+	
 	
 	</div>
 </div>
