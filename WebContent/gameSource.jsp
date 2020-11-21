@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,6 +89,9 @@ y위치 : <input type = "text" id = "y"><p>
 						dy = -dy;
 						b.status = 0;
 						score++;
+					  	if(score == brickRowCount*brickColumnCount) {
+	                        alert("YOU WIN, CONGRATULATIONS!");
+	                        clearInterval(motor);
 					}
 				}
 			}
@@ -128,6 +133,12 @@ y위치 : <input type = "text" id = "y"><p>
 		}
 	}
 	
+	function writeScore() {
+	    ctx.font = "16px Arial";
+	    ctx.fillStyle = "#0095DD";
+	    ctx.fillText("Score: "+score, 8, 20);
+	}
+	
 	function draw() {
 		if(start == true){
 			whereX.value = x;
@@ -139,6 +150,7 @@ y위치 : <input type = "text" id = "y"><p>
 			makeBall();
 			makePaddle();
 			collisionDetection();
+			writeScore();
 			
 			x += dx;
 			y += dy;

@@ -49,7 +49,7 @@
 <div id = "board">
 	<div id="wrapper">
 	<!-- 헤더 시작 -->
-	<div id = "mainTop">벽돌 부수기 게임 홈페이지</div>
+	<div id = "mainTop"><h1>벽돌 부수기 게임 홈페이지</h1></div>
 	<h4>ID = <%=session.getAttribute("sessionID") %></h4>
 	<header>
 		<form method="post" action="logout.jsp"> session test용
@@ -62,7 +62,7 @@
 		<li><a href="community.jsp">한줄 평 게시판</a></li>
 		</ul>
 	</header>
-	<%@include  file="GameSource.html" %>
+	<%@include  file="gameSource.jsp" %>
 	
 	
 	</div>
