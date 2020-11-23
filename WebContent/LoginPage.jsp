@@ -5,13 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		window.history.forward();
 		function noBack() {
 			window.history.forward();
 		}
 		//뒤로가기 방지 코드	
-    </script>
+    </script> 이거 넣으니까 ID, PW 체크할때 alert가 계속 뜬다(history.back이 작동이 안되는 듯)-->
+    
 <meta charset="EUC-KR">
 <title>로그인 페이지</title>
 <style>

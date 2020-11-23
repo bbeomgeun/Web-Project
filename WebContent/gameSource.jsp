@@ -17,7 +17,7 @@ y위치 : <input type = "text" id = "y"><p>
 점수  : <input type = "text" id = "score"><p>
 <button onclick = "gameStart()">게임 시작하기</button>
 
-<script>
+<script type="text/javascript">
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	var whereX = document.getElementById("x");
@@ -33,7 +33,7 @@ y위치 : <input type = "text" id = "y"><p>
 	var ballRadius = 10;
 	var paddleHeight = 10;
 	var paddleWidth = 75;
-	var paddleX = (canvas.width-paddleWidth)/2; // paddle의 왼쪽
+	var paddleX = (canvas.width-paddleWidth)/2;
 	var rightPressed = false;
 	var leftPressed = false;
 	
@@ -46,6 +46,8 @@ y위치 : <input type = "text" id = "y"><p>
 	var brickOffsetLeft = 30;
 
 	var start = false;
+	
+	var motor = setInterval(draw, 10);
 	
 	function gameStart() {
 		start = true;
@@ -92,6 +94,7 @@ y위치 : <input type = "text" id = "y"><p>
 					  	if(score == brickRowCount*brickColumnCount) {
 	                        alert("YOU WIN, CONGRATULATIONS!");
 	                        clearInterval(motor);
+						}
 					}
 				}
 			}
@@ -178,7 +181,6 @@ y위치 : <input type = "text" id = "y"><p>
 				paddleX -= 7;
 		}
 	}
-	var motor = setInterval(draw, 10); // draw함수를 10ms마다 계속 실행하기.
 </script>
 
 </body>
