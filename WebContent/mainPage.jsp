@@ -58,7 +58,7 @@
 		</form>
 		<ul>
 		<li><a href = "mainPage">게임 페이지</a></li>
-		<li><a href = "ranking.jsp">랭킹 페이지</a></li>
+		<li><a href = "rankingPage.jsp">랭킹 페이지</a></li>
 		<li><a href="community.jsp">한줄 평 게시판</a></li>
 		</ul>
 	</header>

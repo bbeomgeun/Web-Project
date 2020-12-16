@@ -10,8 +10,9 @@
 	</style>
 </head>
 <body>
-
-<canvas id = "myCanvas" width = "480" height = "320"></canvas>
+<form method="post" action="mainPage.jsp">
+	<canvas id = "myCanvas" width = "480" height = "320"></canvas>
+</form>
 x위치 : <input type = "text" id = "x"><p>
 y위치 : <input type = "text" id = "y"><p>
 점수  : <input type = "text" id = "score"><p>
@@ -93,6 +94,7 @@ y위치 : <input type = "text" id = "y"><p>
 						score++;
 					  	if(score == brickRowCount*brickColumnCount) {
 	                        alert("YOU WIN, CONGRATULATIONS!");
+	                        confirm("결과를 순위에 기록할까요?");
 	                        clearInterval(motor);
 						}
 					}
@@ -171,6 +173,7 @@ y위치 : <input type = "text" id = "y"><p>
 				else{
 					alert("GAME OVER");
 					clearInterval(motor); // 게임 종료
+					confirm("결과를 순위에 기록할까요?");
 					document.location.reload();
 				}
 			}
@@ -179,6 +182,13 @@ y위치 : <input type = "text" id = "y"><p>
 				paddleX += 7;
 			else if(leftPressed && paddleX > 0)
 				paddleX -= 7;
+		}
+		function record(){
+			var answer = confirm("결과를 순위에 기록할까요?");
+			
+			if(answer){
+				
+			}
 		}
 	}
 </script>
