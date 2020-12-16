@@ -1,8 +1,9 @@
 
+<%@page import="com.dao.User"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     
-    <%@page import="com.myBatis.MyBatisConnectionFactory"%>
+    <%@page import="com.dao.MyBatisConnectionFactory"%>
 	<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 	<%@page import="org.apache.ibatis.session.SqlSession"%>
 
@@ -19,10 +20,16 @@
     SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
     SqlSession sqlSession = sqlSessionFactory.openSession();
 
+    User user1 = new User();
+    user1.setNickname("please");
+    user1.setScore(25);
+    user1.setDate("2020-12-17");
+    
     try{
-        int cnt = sqlSession.selectOne("UserMapper.getCount");
-
-        System.out.println("전체 Cnt : " + cnt);
+        //int cnt = sqlSession.selectOne("com.dao.UserDao.getCount");
+        sqlSession.insert("com.dao.UserDao.insert", user1);
+		sqlSession.commit();
+        //System.out.println("전체 Cnt : " + cnt);
 
       /*  // 단일행 가져오기
         HashMap hm = sqlSession.selectOne("Test.getContents") ;

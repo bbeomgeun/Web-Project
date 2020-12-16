@@ -1,10 +1,6 @@
 package com.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.session.SqlSession;
-
-import com.myBatis.MyBatisConnectionFactory;
 
 public class Main {
 	public static void main(String args[]) {

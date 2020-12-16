@@ -4,7 +4,7 @@ public class User {
 	private int userid;
 	private String nickname;
 	private int score;
-	private String date;
+	private String dob;
 	
 	public int getUserid() {
 		return userid;
@@ -28,15 +28,15 @@ public class User {
 	}
 	
 	public String getDate() {
-		return date;
+		return dob;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate(String dob) {
+		this.dob = dob;
 	}
 	
 	public String toString() {
 		return "nickname: " + nickname +
 				" score: " + score +
-				" date: " + date; 
+				" date: " + dob; 
 	}
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   
+    <mapper namespace="com.dao.UserDao">
+    
+     <resultMap id="result" type="User">
+     	<result property="userid" column="userid"/>
+     	<result property="nickname" column="nickname"/>
+     	<result property="score" column="score"/>
+     	<result property="dob" column="dob"/>
+     </resultMap>
+     
+     <select id="getCount" resultType="int">
+        SELECT count(*) FROM record_Table
+    </select>
+     
+     
+     <select id="selectList" resultMap="result">
+     	SELECT * FROM record_Table ORDER BY score DESC; </select>
+     	
+     	
+     <select id="selectById" parameterType="String" resultMap="result">
+      SELECT * FROM record_Table WHERE nickname = #{nickname}
+     </select>
+     
+     <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="userid">
+      INSERT INTO record_Table(nickname, score, dob) VALUES (#{nickname}, #{score}, #{dob});
+     </insert>
+      
+     <update id="update" parameterType="User">
+     	UPDATE record_Table SET
+     		score = #{score},
+     		dob = #{dob},
+     	 WHERE nickname = #{nickname}
+     </update>
+     
+     <delete id="delete" parameterType="int">
+      DELETE from record_Table WHERE userid = #{userid}
+     </delete>
+     
+     </mapper>
+
