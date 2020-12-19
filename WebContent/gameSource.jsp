@@ -10,13 +10,14 @@
 	</style>
 </head>
 <body>
-<form method="post" action="mainPage.jsp">
-	<canvas id = "myCanvas" width = "480" height = "320"></canvas>
-</form>
+
+<canvas id = "myCanvas" width = "480" height = "320"></canvas>
+
 x위치 : <input type = "text" id = "x"><p>
 y위치 : <input type = "text" id = "y"><p>
 점수  : <input type = "text" id = "score"><p>
 <button onclick = "gameStart()">게임 시작하기</button>
+<%=session.getAttribute("sessionNickname") %>님 환영합니다
 
 <script type="text/javascript">
 	var canvas = document.getElementById("myCanvas");

@@ -11,7 +11,6 @@ public class UserDao {
 	private SqlSessionFactory sqlSessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
 	private SqlSession sqlSession;
 	
-	
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 	    this.sqlSessionFactory = sqlSessionFactory;
 	}
@@ -31,7 +30,7 @@ public class UserDao {
 	    }
 	}
 
-	public User selectById(String nickname) { // 특정한 행 가져오기
+	public User selectOne(String nickname) { // 특정한 행 가져오기
 		sqlSession = sqlSessionFactory.openSession();
 	    
 		try {

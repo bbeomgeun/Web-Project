@@ -13,16 +13,18 @@
      	<result property="dob" column="dob"/>
      </resultMap>
      
+     <resultMap type="hashMap" id = "selectMap"></resultMap>
+     
      <select id="getCount" resultType="int">
         SELECT count(*) FROM record_Table
     </select>
      
      
-     <select id="selectList" resultMap="result">
-     	SELECT * FROM record_Table ORDER BY score DESC; </select>
+     <select id="selectList" resultType="User">
+     	SELECT userid as userid, nickname as nickname, score as score, dob as dob FROM record_Table ORDER BY score DESC; </select>
      	
      	
-     <select id="selectById" parameterType="String" resultMap="result">
+     <select id="selectOne" parameterType="String" resultMap="selectMap">
       SELECT * FROM record_Table WHERE nickname = #{nickname}
      </select>
      
