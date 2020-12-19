@@ -56,11 +56,11 @@ body {
 </style>
 <script>
 function check(){
-	if(!document.signUp.id.value){
+	if(!document.signIn.ID.value){
 		alert("아이디를 입력하세요!");
 		return false;
 	}
-	if(!document.signUp.pw.value){
+	if(!document.signIn.PW.value){
 		alert("비밀번호를 입력하세요!");
 		return false;
 	}
@@ -71,7 +71,7 @@ function check(){
 
 	<h1 align="center">벽돌 부수기 게임 홈페이지 로그인 화면입니다.</h1>
 
-	<form class="login-form" action="login_check.jsp" method="post" onsubmit="return check()">
+	<form class="login-form" action="login_check.jsp" name="signIn" method="post" onsubmit="return check()">
 		<input type="text" name="ID" class="text" placeholder="아이디">
 		<input type="password" name="PW" class = "text" placeholder="비밀번호">
 		<input type="submit" value = "로그인" class = "btn_submit">

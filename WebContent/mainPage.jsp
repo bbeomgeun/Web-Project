@@ -63,7 +63,7 @@
 		<ul>
 		<li><a href = "mainPage.jsp">게임 페이지</a></li>
 		<li><a href = "rankingPage.jsp">랭킹 페이지</a></li>
-		<li><a href="community.jsp">한줄 평 게시판</a></li>
+		<li><a href="communityPage.jsp">한줄 평 게시판</a></li>
 		</ul>
 		<canvas id = "myCanvas" width = "480" height = "320"></canvas>
 		<button onclick = "gameStart()">게임 시작하기</button><p>

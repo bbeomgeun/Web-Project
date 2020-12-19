@@ -55,7 +55,7 @@
 			<ul>
 				<li><a href = "mainPage.jsp">게임 페이지</a></li>
 				<li><a href = "rankingPage.jsp">랭킹 페이지</a></li>
-				<li><a href="community.jsp">한줄 평 게시판</a></li>
+				<li><a href="communityPage.jsp">한줄 평 게시판</a></li>
 			</ul>
 			<p>
 	<h1>테트리스 게임 랭킹</h1>
