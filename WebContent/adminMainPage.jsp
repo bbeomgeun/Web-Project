@@ -24,11 +24,6 @@
 	</ol>
 	
 <hr>
-<h2> 관리자 정보 수정 </h2>
-<!-- 아이디 수정 : <input type="text"
-
-UPDATE `gamepage_db`.`admin_table` SET `ID` = 'testere' WHERE (`userid` = '2');
- -->
 
 </body>
 </html>

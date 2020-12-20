@@ -35,15 +35,12 @@
 		border-top:2px solid black;
 		border-bottom : 2px solid black;
 	}
+
+	canvas { background-color : black ; display: block; margin : 0 auto;}
 	
-	div header ul li{
-		list-style: none;
-		float : left;
-		padding-left : 30px;
-		padding-right : 30px;
-		color : black;
-	}
-	canvas { background : #eee; display: block; margin : 0 auto;}
+	div.button{
+	  text-align: center;
+   }
 </style>
 </head>
 
@@ -65,21 +62,29 @@
 			<li><a href = "rankingPage.jsp">랭킹 페이지</a></li>
 			<li><a href="communityPage.jsp">한줄 평 게시판</a></li>
 		</ul>
-		<canvas id = "myCanvas" width = "480" height = "320"></canvas>
-		<button onclick = "gameStart()">게임 시작하기</button><p>
+		<canvas id = "myCanvas" width = "480" height = "320"></canvas><p>
+		<div class="button">
+			<button onclick = "gameStart()" >게임 시작하기</button>
+			<button onclick = "reload()" display: block>게임 재시작하기</button><p>
+		</div>
 	<hr>
 	
-	<h3>랭킹 저장</h3>
-	<form id = "recordForm" method="post" action="recordSave.jsp" >
-		<input type = "text" id = "nickName" name = "nickName" value = <%=sessionNickName %>><p>
-		<input type = "text" id = "score" name = "score">
-		<input type = "submit" value="랭킹에 저장하기">
-	</form>
+	<div class="button">
+		<h3>랭킹 저장</h3>
+		<form id = "recordForm" method="post" action="recordSave.jsp" >
+			닉네임 : <input type = "text" id = "nickName" name = "nickName" value = <%=sessionNickName %>><p>
+			스코어 : <input type = "text" id = "score" name = "score">
+			<input type = "submit" value="랭킹에 저장하기">
+		</form>
+	</div>
 	</header>
 	</div>
 </div>
 
 <script type="text/javascript">
+	function reload(){
+		document.location.reload();
+	}
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
 	var scoreBoard = document.getElementById("score");
@@ -94,13 +99,13 @@
 	var dy = -2;
 	var ballRadius = 10;
 	var paddleHeight = 10;
-	var paddleWidth = 75;
+	var paddleWidth = 100;
 	var paddleX = (canvas.width-paddleWidth)/2;
 	var rightPressed = false;
 	var leftPressed = false;
 	
 	var brickRowCount = 5;
-	var brickColumnCount = 3;
+	var brickColumnCount = 5;
 	var brickWidth = 75;
 	var brickHeight = 20;
 	var brickPadding = 10;
@@ -119,7 +124,7 @@
 	for(var c = 0 ; c < brickColumnCount; c++){
 		bricks[c] = [];
 		for(var r = 0 ; r<brickRowCount ; r++){
-			bricks[c][r] = {x:0, y:0, status : 1};
+			bricks[c][r] = {x:0, y:0, status : 3};
 		}
 	}
 	
@@ -148,12 +153,12 @@
 		for(var c = 0 ; c<brickColumnCount ; c++){
 			for(var r =0 ; r<brickRowCount ; r++){
 				var b = bricks[c][r];
-				if(b.status == 1){
+				if(b.status > 0){
 					if(x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight){
 						dy = -dy;
-						b.status = 0;
+						b.status--;;
 						gameScore++;
-					  	if(score == brickRowCount*brickColumnCount) {
+					  	if(score == brickRowCount*brickColumnCount*3) {
 	                        alert("YOU WIN, CONGRATULATIONS!");
 	                        record();
 	                        clearInterval(motor);
@@ -167,7 +172,7 @@
 	function makeBall(){
 		ctx.beginPath();
 		ctx.arc(x,y, ballRadius, 0, Math.PI*2);
-		ctx.fillStyle = "#0095DD";
+		ctx.fillStyle = "white";
 		ctx.fill();
 		ctx.closePath();
 	}
@@ -183,15 +188,20 @@
 	
 	function makeBricks() {
 		for(var c = 0 ; c < brickColumnCount ; c++){
-			for(var r = 0; r<brickRowCount ; r++){
-				if(bricks[c][r].status == 1){
+			for(var r = 0; r < brickRowCount ; r++){
+				if(bricks[c][r].status > 0){
 					var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
 					var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
 					bricks[c][r].x = brickX;
 					bricks[c][r].y = brickY;
 					ctx.beginPath();
 					ctx.rect(brickX, brickY, brickWidth, brickHeight);
-					ctx.fillStyl = "#0095DD";
+					if(bricks[c][r].status == 3)
+						ctx.fillStyle = "red";
+					else if(bricks[c][r].status == 2)
+						ctx.fillStyle = "orange";
+					else if(bricks[c][r].status == 1)
+						ctx.fillStyle = "yellow";
 					ctx.fill();
 					ctx.closePath();
 				}
@@ -233,7 +243,6 @@
 					alert("GAME OVER");
 					clearInterval(motor); // 게임 종료
 					record();
-					//document.location.reload();
 				}
 			}
 			

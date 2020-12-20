@@ -37,12 +37,6 @@
 		border-bottom : 2px solid black;
 	}
 	
-	div header ul li{
-		list-style: none;
-		float : left;
-		padding-left : 30px;
-		padding-right : 30px;
-		color : black;
 	}
 </style>
 </head>
