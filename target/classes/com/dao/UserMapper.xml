@@ -34,13 +34,14 @@
       
      <update id="update" parameterType="User">
      	UPDATE record_Table SET
+   			nickname = #{nickname},
      		score = #{score},
-     		dob = #{dob},
-     	 WHERE nickname = #{nickname}
+     		dob = #{dob}
+     	 WHERE userid = #{userid};
      </update>
      
      <delete id="delete" parameterType="int">
-      DELETE from record_Table WHERE userid = #{userid}
+      DELETE from record_Table WHERE userid = #{userid};
      </delete>
      
      </mapper>

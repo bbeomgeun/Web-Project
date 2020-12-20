@@ -1,16 +1,16 @@
 package javabean;
 
 public class UserCommentBean {
-	private int num;
+	private int userid;
 	private String nickname;
 	private String comment;
 	private String date;
 	
-	public int getNum() {
-		return num;
+	public int getUserid() {
+		return userid;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	
 	public String getNickname() {

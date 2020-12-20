@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>유저 수정</title>
+<title>랭킹 수정</title>
 </head>
-<h1> 유저 목록 추가, 수정, 삭제 </h1>
+<h1> 랭킹 목록 추가, 수정, 삭제 </h1>
 <button onclick="toMain()">메인으로</button>
 
 <script>
@@ -17,14 +17,14 @@
 </script>
 
 <body>
-<h2> 유저 목록 </h2>
+<h2> 랭킹 목록 </h2>
 <table width = "100%" border = "1">
-      <tr>
-      		<td>유저 number</td>
-            <td>ID</td>
-            <td>PW</td>
-            <td>날짜</td>
+       <tr>
+       		<td>유저 Number</td>
+      		<td>등수</td>
             <td>닉네임</td>
+            <td>점수</td>
+            <td>날짜</td>
       </tr>
 <%
     Class.forName("com.mysql.jdbc.Driver");
@@ -33,51 +33,48 @@
  		"jdbc:mysql://localhost:3306/gamepage_db", "root", "wndgkrrmsl12!"); 
  	Statement stmt = conn.createStatement();
 
- 	String sqlStr = "SELECT * FROM user_table";
- 	ResultSet comments = stmt.executeQuery(sqlStr);
+ 	String sqlStr = "SELECT * FROM record_table ORDER BY score DESC";
+ 	ResultSet records = stmt.executeQuery(sqlStr);
  %>
  	<%
- 	while(comments.next()) {
+ 	int i = 1;
+ 	while(records.next()) {
  		%>
  		<tr>
- 			<td><%= comments.getString("userid") %></td>
-	        <td><%= comments.getString("ID") %></td>
-	        <td><%= comments.getString("PW") %></td>
-	        <td><%= comments.getString("dob") %></td>
-	         <td><%= comments.getString("nickname") %></td>
+ 			<td><%= records.getInt("userid") %></td>
+ 			<td><%= i %></td>
+	        <td><%= records.getString("nickname") %></td>
+	        <td><%= records.getString("score") %></td>
+	        <td><%= records.getString("dob") %></td>
    		</tr>
    		<% 
- 	}
+   		i++;
+   		}
    		stmt.close();
 		conn.close();%>
    </table>
    
    <hr>
    
-  <form name = "user" method = "post" action = "admin_User_Check.jsp">
+  <form name = "ranking" method = "post" action = "admin_Ranking_Check.jsp">
 <table border="1">
 	<tr bgcolor = "yellow">
-		<td align = "center" colspan = 2><b>유저 정보 입력</b></td>
+		<td align = "center" colspan = 2><b>랭킹 정보 입력</b></td>
 	</tr>
 	
 	<tr>
-		<td align = "right">변경할 유저 number(insert시 아무 숫자나 넣기) : </td>
+		<td align = "right">변경할 유저 number(insert시 아무 숫자나 넣기) :  </td>
 		<td><input type = "text" name = "userid"></td>
-	</tr>
-	
-	<tr>
-		<td align = "right">변경할 ID :  </td>
-		<td><input type = "text" name = "ID"></td>
-	</tr>
-	
-	<tr>
-		<td align = "right">변경할 PW : </td>
-		<td><input type = "text" name = "PW"></td>
 	</tr>
 	
 	<tr>
 		<td align = "right">변경할 닉네임 :  </td>
 		<td><input type = "text" name = "nickname"></td>
+	</tr>
+	
+	<tr>
+		<td align = "right">변경할 점수 : </td>
+		<td><input type = "text" name = "score"></td>
 	</tr>
 	
 	<tr>

@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>유저 수정</title>
+<title>코멘트 수정</title>
 </head>
-<h1> 유저 목록 추가, 수정, 삭제 </h1>
+<h1> 코멘트 목록 추가, 수정, 삭제 </h1>
 <button onclick="toMain()">메인으로</button>
 
 <script>
@@ -17,14 +17,13 @@
 </script>
 
 <body>
-<h2> 유저 목록 </h2>
+<h2> 코멘트 목록 </h2>
 <table width = "100%" border = "1">
       <tr>
-      		<td>유저 number</td>
-            <td>ID</td>
-            <td>PW</td>
+      		<td>글 번호</td>
+            <td>익명 닉네임</td>
+            <td>한줄 코멘트</td>
             <td>날짜</td>
-            <td>닉네임</td>
       </tr>
 <%
     Class.forName("com.mysql.jdbc.Driver");
@@ -33,7 +32,7 @@
  		"jdbc:mysql://localhost:3306/gamepage_db", "root", "wndgkrrmsl12!"); 
  	Statement stmt = conn.createStatement();
 
- 	String sqlStr = "SELECT * FROM user_table";
+ 	String sqlStr = "SELECT * FROM comment_table";
  	ResultSet comments = stmt.executeQuery(sqlStr);
  %>
  	<%
@@ -41,10 +40,9 @@
  		%>
  		<tr>
  			<td><%= comments.getString("userid") %></td>
-	        <td><%= comments.getString("ID") %></td>
-	        <td><%= comments.getString("PW") %></td>
+	        <td><%= comments.getString("nickname") %></td>
+	        <td><%= comments.getString("comment") %></td>
 	        <td><%= comments.getString("dob") %></td>
-	         <td><%= comments.getString("nickname") %></td>
    		</tr>
    		<% 
  	}
@@ -54,30 +52,25 @@
    
    <hr>
    
-  <form name = "user" method = "post" action = "admin_User_Check.jsp">
+  <form name = "ranking" method = "post" action = "admin_Comment_Check.jsp">
 <table border="1">
 	<tr bgcolor = "yellow">
-		<td align = "center" colspan = 2><b>유저 정보 입력</b></td>
+		<td align = "center" colspan = 2><b>댓글 정보 입력</b></td>
 	</tr>
 	
 	<tr>
-		<td align = "right">변경할 유저 number(insert시 아무 숫자나 넣기) : </td>
+		<td align = "right">변경할 유저 number(insert시 아무 숫자나 넣기) :  </td>
 		<td><input type = "text" name = "userid"></td>
-	</tr>
-	
-	<tr>
-		<td align = "right">변경할 ID :  </td>
-		<td><input type = "text" name = "ID"></td>
-	</tr>
-	
-	<tr>
-		<td align = "right">변경할 PW : </td>
-		<td><input type = "text" name = "PW"></td>
 	</tr>
 	
 	<tr>
 		<td align = "right">변경할 닉네임 :  </td>
 		<td><input type = "text" name = "nickname"></td>
+	</tr>
+	
+	<tr>
+		<td align = "right">변경할 코멘트 : </td>
+		<td><input type = "text" name = "comment"></td>
 	</tr>
 	
 	<tr>

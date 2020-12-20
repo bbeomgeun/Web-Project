@@ -10,7 +10,10 @@
 	<%String sessionId = (String)session.getAttribute("sessionID");
 	String sessionAdminName = (String)session.getAttribute("sessionAdminName");%>
 <h1> 관리자 페이지.</h1>
-<h2> 관리자 이름 : <%= sessionAdminName %> 님</h2>
+	<form method="post" action="logout.jsp"> 
+		관리자 이름 : <%=sessionAdminName %>님 환영합니다
+		<input type="submit" value="로그아웃" />
+	</form>
 <hr>
 <h2> 관리자 기능 </h2>
 <hr>
