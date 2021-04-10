@@ -18,18 +18,6 @@
  
  ---
  
- <h2> 웹 공부 </h2>
-
-- HTML, CSS, Javascript & JSP
-
-<h2> Javascript 문법 </h2>
-
- - 
-
-<h2> DOM 구조 </h2>
-
- - 
-
 <h2> Servlet과 JSP의 개념 </h2>
 
 <h3> Servlet이란 </h3>
